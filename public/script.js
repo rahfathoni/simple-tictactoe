@@ -141,13 +141,14 @@ var Play = {
         }
     },
     isEmpty: function() {
-        let check = true;
-        for (let i = 0; i < this.board.length; i++) {
-          if (this.board[i].includes('.')) {
-            return false;
-          }
+        if (this.board && this.board.length > 0) {
+            for (let i = 0; i < this.board.length; i++) {
+              if (this.board[i].includes('.')) {
+                return false;
+              }
+            }
         }
-        return check;
+        return true;
     },
     checkAll: function(player) {
         if(this.checkRows(player)) {
@@ -226,12 +227,14 @@ $(document).ready(function() {
         $info.html(`${player} turn`).removeClass().addClass(player);
     }
     $document.on('keypress', function(event) {
-    if (event.keyCode === 32) {
+    if (event.keyCode === 32 && !Play.finish && player && !Play.isEmpty()) {
         if (player === 'player1') {
-          pickPlayer('player2')
+            pickPlayer('player2')
+            return;
         }
         if (player === 'player2') {
-          pickPlayer('player1')
+            pickPlayer('player1')
+            return;
         }
       }
     })
