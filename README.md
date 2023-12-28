@@ -1,8 +1,8 @@
 # simple-tictactoe
 
-<!-- ## WEBSITE URL
+## WEBSITE URL
 
-        https://my-pokedex-fathoni.web.app/ -->
+        https://simple-tictactoe-fathoni.web.app
 
 ## HOW TO OPEN FROM GIT REPOSITORY IN VSCODE
 
