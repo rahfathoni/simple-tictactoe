@@ -11,7 +11,7 @@
     3. open index.html
     4. right-click in index.html, choose "Open with Live Server"
 
-Start date: 27 December 2023
+Start date: 26 December 2023
 
 
 Tutorial from https://codepen.io/Howie_Burger/pen/MezBKa
