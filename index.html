@@ -1,1 +1,59 @@
-<!-- initila file -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Tic-Tac-Toe</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <script src="script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Let's Play TIC TAC TOE!</h1>
+    </header>
+    <section>
+        <div id="main">
+            <div id="containerConfig">
+                <div id="boardSizeConfig">
+                    <label for="boardSize">Choose board size : </label>
+                    <select id="selectBoardSizeConfig" name="boardSize">
+                        <option value="3">3x3</option>
+                        <option value="4">4x4</option>
+                        <option value="5">5x5</option>
+                        <option value="6">6x6</option>
+                        <option value="7">7x7</option>
+                        <option value="8">8x8</option>
+                        <option value="9">9x9</option>
+                        <option value="10">10x10</option>
+                    </select>
+                </div>
+                <button id="buttonBoardSizeSubmit">Generate Board</button>
+            </div>
+            <div id="containerMainBoard">
+                <div id="mainBoard">
+                    <div class="players">
+                        <button class="player1">Player 1 
+                            <br/> 
+                            <span style="font-weight: bold;">Score: 0</span>
+                        </button>
+                        <button class="player2">Player 2 
+                            <br/> 
+                            <span style="font-weight: bold;">Score: 0</span>
+                        </button>
+                    </div>
+                    <div id="containerInformation"></div>
+                    <div id="containerReset" class="button-display-none">
+                        <button id="buttonReset">Reset</button>
+                    </div>        
+                    <div class="container">
+                        -- Choose board size first --
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src='script.js'></script>
+</body>
+</html>
