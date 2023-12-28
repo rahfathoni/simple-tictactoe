@@ -12,13 +12,13 @@ var Play = {
         console.table(this.board)
     },
     addMark: function(player, row, col) {
+        if (['player1', 'player2'].includes(this.board[row][col])) {
+            return 1;
+        }
         if (this.board[row][col] === '.') {
             this.board[row][col] = player;
             this.lastPlayer = player;
             return true;
-        }
-        if (['player1', 'player2'].includes(this.board[row][col])) {
-            return 1;
         }
         return false;
     },
@@ -174,7 +174,7 @@ $(document).ready(function() {
     let $body = $('body');
     let $players = $('.players');
     let $select = $('select');
-    let $info = $('#containerInformation');
+    let $info = $('#info');
     let $cell;
     let $buildButton = $('#buttonBoardSizeSubmit'); 
     let size;
@@ -247,16 +247,16 @@ $(document).ready(function() {
         let row = el.attr('row');
         let col = el.attr('col');
         if (!player) {
-            $info.html("Please choose the player");
+            $info.html("Please choose the player").removeClass();;
             return true;
         }
-        if (player === Play.lastPlayer && player) {
-            $info.html("Please Switch Player. Press player button or Spacebar")
+        if (player === Play.lastPlayer && player && !Play.finish) {
+            $info.html("Please Switch Player. Press player button or Spacebar").removeClass();
             return true;
         }
         let add = Play.addMark(player, row, col);
         if (add === 1) {
-            $info.html("Box already filled. Choose other box.")
+            $info.html("Box already filled. Choose other box.").removeClass();
             return true;
         }
         if (add) {
@@ -266,6 +266,12 @@ $(document).ready(function() {
         }
         return true;
     }
+    let printWin = function() {
+        let winArray = Play.winArray;
+        for (let i = 0; i < winArray.length; i++) {
+          $(".cell[row=" + winArray[i][0] + "][col=" + winArray[i][1] + "]").addClass('win');
+        }
+    };
     let checkRound = function() {
         if (Play.finish && Play.lastPlayer === 'player1') {
             player1Score++;
@@ -273,6 +279,7 @@ $(document).ready(function() {
             $body.removeClass().addClass('player1');
             $cell.off('click');
             $players.off('click');
+            printWin();
         }
         if (Play.finish && Play.lastPlayer === 'player2') {
             player2Score++;
@@ -280,6 +287,7 @@ $(document).ready(function() {
             $body.removeClass().addClass('player2');
             $cell.off('click');
             $players.off('click');
+            printWin();
         }
         if (Play.isEmpty() && !Play.finish) {
             $info.html('DRAW!! No point added. Reset Board to Continue').removeClass();
@@ -294,13 +302,10 @@ $(document).ready(function() {
 
     // Reset Button
     let resetBoard = function() {
-        Play.newBoard(size, winCount);
         $cell.removeClass('player1');
         $cell.removeClass('player2');
-        $cell.on('click', takeMove);
-        $('#containerReset').removeClass().addClass('button-display-none');
-        player = '';
-        $body.addClass('reset');
+        $cell.removeClass('win');
+        generateBoard()
         $info.html("Let's Play again").removeClass();
     }
     $('#buttonReset').on('click', resetBoard);
