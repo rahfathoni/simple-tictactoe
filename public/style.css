@@ -39,8 +39,9 @@ h1 {
     align-items: center;
     text-align: center;
     margin-bottom: 16px;
-    padding-top: 6px;
-    padding-bottom: 6px;
+}
+#info {
+    padding: 8px 150px 8px 150px;
 }
 
 #containerMainBoard {
@@ -98,6 +99,9 @@ button.player2 {
 } 
 .player2 {
     background-color: skyblue;
+}
+.win {
+    background-color: springgreen;
 }
 
 #boardSizeConfig {
